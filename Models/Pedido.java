@@ -9,7 +9,7 @@ public class Pedido {
     private List<ItemdoPedido> produtos;
     private Cliente cliente;
     private double valorTotal;
-
+    
     public double getValorTotal() {
         return valorTotal;
     }
@@ -28,29 +28,5 @@ public class Pedido {
         produtos = new ArrayList<ItemdoPedido>();
     }
 
-    public void adicionarProdutoNaLista(Produto produto, int quantidade) {
-        ItemdoPedido item = new ItemdoPedido(produto, quantidade);
-        this.produtos.add(item);
-        valorTotal += produto.compraProduto(item.getQuantidade());
-    }
 
-    public void removerProdutoDaLista(ItemdoPedido item) {
-        valorTotal -= item.getProduto()
-            .devolverProduto(item.getQuantidade());
-        this.produtos.remove(item);
-    }
-
-    public void finalizaPedido() {
-        data = new Date();
-        System.out.println("Cliente: " + cliente.getNome());
-        imprimeProdutos();
-        System.out.println("Total do pedido: " + valorTotal);
-        cliente.adicionaPedidoAoHistorico(this);
-    }
-
-    public void imprimeProdutos() {
-        for (ItemdoPedido item : produtos) {
-            System.out.println("Produto: " + item.getNome() + ", Quantidade: " + item.getQuantidade() + ", Total Item: " + item.getValorTotal());
-        }
-    }
 }
