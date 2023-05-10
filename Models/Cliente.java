@@ -1,4 +1,5 @@
 package Models;
+import java.util.Arraylist
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +33,5 @@ public class Cliente {
         this.telefone = telefone;
     }
 
-    public void adicionaPedidoAoHistorico(Pedido pedido) {
-        historicoDePedidos.add(pedido);
-    }
+
 }

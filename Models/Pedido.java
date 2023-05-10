@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Pedido {
     private Date data;
-    private List<ProdutoDoPedido> produtos;
+    private List<ItemdoPedido> produtos;
     private Cliente cliente;
     private double valorTotal;
 
@@ -16,7 +16,7 @@ public class Pedido {
     public Date getData() {
         return data;
     }
-    public List<ProdutoDoPedido> getProdutos() {
+    public List<ItemdoPedido> getProdutos() {
         return produtos;
     }
     public Cliente getCliente() {
@@ -25,16 +25,16 @@ public class Pedido {
 
     public Pedido(Cliente cliente) {
         this.cliente = cliente;
-        produtos = new ArrayList<ProdutoDoPedido>();
+        produtos = new ArrayList<ItemdoPedido>();
     }
 
     public void adicionarProdutoNaLista(Produto produto, int quantidade) {
-        ProdutoDoPedido item = new ProdutoDoPedido(produto, quantidade);
+        ItemdoPedido item = new ItemdoPedido(produto, quantidade);
         this.produtos.add(item);
         valorTotal += produto.compraProduto(item.getQuantidade());
     }
 
-    public void removerProdutoDaLista(ProdutoDoPedido item) {
+    public void removerProdutoDaLista(ItemdoPedido item) {
         valorTotal -= item.getProduto()
             .devolverProduto(item.getQuantidade());
         this.produtos.remove(item);
@@ -49,7 +49,7 @@ public class Pedido {
     }
 
     public void imprimeProdutos() {
-        for (ProdutoDoPedido item : produtos) {
+        for (ItemdoPedido item : produtos) {
             System.out.println("Produto: " + item.getNome() + ", Quantidade: " + item.getQuantidade() + ", Total Item: " + item.getValorTotal());
         }
     }

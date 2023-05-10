@@ -8,10 +8,7 @@ import Models.Produto;
 import Models.funcionarios.Funcionario;
 import Models.funcionarios.cargos.Entregador;
 import Models.funcionarios.cargos.Ratatouille;
-import Models.itens.BatataFrita;
-import Models.itens.Hamburguer;
-import Models.itens.Milkshakes;
-import Models.itens.Refrigerante;
+
 
 public class Database {
     public static List<Funcionario> funcionarios = new ArrayList<Funcionario>();
@@ -30,10 +27,10 @@ public class Database {
         }
 
         Produto[] produtosbase = {
-            new Hamburguer("Hamburger", 100, 10),
-            new BatataFrita("Batata Frita", 60, 12),
-            new Milkshakes("Milkshake", 50, 8),
-            new Refrigerante("Coca", 90, 4)
+            new Produto("Hamburger", 100, 10),
+            new Produto("Batata Frita", 60, 12),
+            new Produto("Milkshake", 50, 8),
+            new Produto("Coca", 90, 4)
         };
 
         for (Produto item : produtosbase) {

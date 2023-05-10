@@ -1,12 +1,12 @@
 package Models;
 
-public class ProdutoDoPedido {
+public class ItemdoPedido {
     private Produto produto;
     private int quantidade;
     private String nome;
     private double valorTotal;
 
-    public ProdutoDoPedido(Produto produto, int quantidade) {
+    public ItemdoPedido(Produto produto, int quantidade) {
         this.produto = produto;
         this.quantidade = quantidade;
         nome = produto.getNome();
