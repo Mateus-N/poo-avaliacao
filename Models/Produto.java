@@ -19,28 +19,15 @@ public class Produto {
         return quantidade;
     }
 
+    public void adicionaQuantidade(int valor) {
+        quantidade += valor;
+    }
+
     public double getPrecoUnitario() {
         return precoUnitario;
     }
 
     public void setPrecoUnitario(double precoUnitario) {
         this.precoUnitario = precoUnitario;
-    }
-
-    public int adicionaProdutosAoEstoque(int quantidade) {
-        this.quantidade += quantidade;
-        return this.quantidade;
-    }
-
-    public double compraProduto(int quantidade) {
-        double valorTotal = quantidade * precoUnitario;
-        this.quantidade -= quantidade;
-        return valorTotal;
-    }
-
-    public double devolverProduto(int quantidade) {
-        double valorTotal = quantidade * precoUnitario;
-        this.quantidade += quantidade;
-        return valorTotal;
     }
 }

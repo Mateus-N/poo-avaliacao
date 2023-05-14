@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Pedido {
     private Date data;
-    private List<ItemdoPedido> produtos;
+    private List<ItemdoPedido> itens;
     private Cliente cliente;
     private double valorTotal;
     
@@ -16,17 +16,21 @@ public class Pedido {
     public Date getData() {
         return data;
     }
-    public List<ItemdoPedido> getProdutos() {
-        return produtos;
+    public void setData(Date data) {
+        this.data = data;
+    }
+    public List<ItemdoPedido> getItens() {
+        return itens;
     }
     public Cliente getCliente() {
         return cliente;
     }
+    public void adicionaItem(ItemdoPedido item) {
+        itens.add(item);
+    }
 
     public Pedido(Cliente cliente) {
         this.cliente = cliente;
-        produtos = new ArrayList<ItemdoPedido>();
+        itens = new ArrayList<ItemdoPedido>();
     }
-
-
 }

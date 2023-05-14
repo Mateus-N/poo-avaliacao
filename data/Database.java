@@ -4,22 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Models.Cliente;
+import Models.Funcionario;
 import Models.Produto;
-import Models.funcionarios.Funcionario;
-import Models.funcionarios.cargos.Entregador;
-import Models.funcionarios.cargos.Ratatouille;
-
 
 public class Database {
-    public static List<Funcionario> funcionarios = new ArrayList<Funcionario>();
-    public static List<Produto> produtos = new ArrayList<Produto>();
-    public static List<Cliente> clientes = new ArrayList<Cliente>();
+    private static List<Funcionario> funcionarios = new ArrayList<Funcionario>();
+    private static List<Produto> produtos = new ArrayList<Produto>();
+    private static List<Cliente> clientes = new ArrayList<Cliente>();
 
     static {
         Funcionario[] funcionariosBase = {
-            new Funcionario("Remy", new Ratatouille("Cozinheiro"), 1200, "8:00 > 12:00 | 14:00 > 16:00"),
-            new Funcionario("Linguini", new Entregador("Entregador"), 900, "8:00 > 12:00 | 14:00 > 16:00"),
-            new Funcionario("Colette", new Entregador("Cozinheira"), 1200, "8:00 > 12:00 | 14:00 > 16:00")
+            new Funcionario("Remy", "Cozinheiro", 1200, "8:00 > 12:00 | 14:00 > 16:00"),
+            new Funcionario("Linguini", "Entregador", 900, "8:00 > 12:00 | 14:00 > 16:00"),
+            new Funcionario("Colette", "Cozinheira", 1200, "8:00 > 12:00 | 14:00 > 16:00")
         };
 
         for (Funcionario funcionario : funcionariosBase) {
@@ -29,7 +26,7 @@ public class Database {
         Produto[] produtosbase = {
             new Produto("Hamburger", 100, 10),
             new Produto("Batata Frita", 60, 12),
-            new Produto("Milkshake", 50, 8),
+            new Produto("Milkshake", 80, 8),
             new Produto("Coca", 90, 4)
         };
 
@@ -46,5 +43,15 @@ public class Database {
         for (Cliente cliente : clientesBase) {
             clientes.add(cliente);
         }
+    }
+
+    public static List<Funcionario> getFuncionarios() {
+        return funcionarios;
+    }
+    public static List<Produto> getProdutos() {
+        return produtos;
+    }
+    public static List<Cliente> getClientes() {
+        return clientes;
     }
 }

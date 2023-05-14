@@ -18,6 +18,9 @@ public class Cliente {
     public String getNome() {
         return nome;
     }
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
     public String getEndereco() {
         return endereco;
     }
@@ -30,6 +33,10 @@ public class Cliente {
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
-
-
+    public List<Pedido> getHistoricoDePedidos() {
+        return historicoDePedidos;
+    }
+    public void addPedidoAoHistorico(Pedido pedido) {
+        historicoDePedidos.add(pedido);
+    }
 }
