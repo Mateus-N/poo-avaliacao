@@ -8,15 +8,18 @@ public class Inicial {
     private static Scanner in = new Scanner(System.in);
 
     public static void inicial() {
-        System.out.println("\nOlá, bem vindo a nossa Hamburgueria!");
-        String pergunta = "Como deseja efetuar login?\n1- Cliente\n2- Funcionario\n3- Encerrar sistema";
-        int opcao = Utilitarios.recebeOpcaoNumerica(pergunta, 3);
-        if (opcao == 1) {
-            menuCliente();
-        } else if (opcao == 2) {
-            menuFuncionario();
-        } else if (opcao == 3) {
-            System.out.println("Volte sempre!");
+        while (true) {
+            System.out.println("\nOlá, bem vindo a nossa Hamburgueria!");
+            String pergunta = "Como deseja efetuar login?\n0- Cliente\n1- Funcionario\n2- Encerrar sistema";
+            int opcao = Utilitarios.recebeOpcaoNumerica(pergunta, 3);
+            if (opcao == 0) {
+                menuCliente();
+            } else if (opcao == 1) {
+                menuFuncionario();
+            } else if (opcao == 2) {
+                System.out.println("Volte sempre!");
+                break;
+            }
         }
     }
 

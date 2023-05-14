@@ -1,7 +1,7 @@
-import telas.ProdutoService;
+import telas.Inicial;
 
 public class Main {
     public static void main(String[] args) {
-        ProdutoService.adicionaQuantidadeAProduto();
+        Inicial.inicial();
     }
 }

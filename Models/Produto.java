@@ -19,8 +19,12 @@ public class Produto {
         return quantidade;
     }
 
-    public void adicionaQuantidade(int valor) {
-        quantidade += valor;
+    public void adicionaQuantidade(int quantidade) {
+        this.quantidade += quantidade;
+    }
+
+    public void diminuiQuantidade(int quantidade) {
+        this.quantidade -= quantidade;
     }
 
     public double getPrecoUnitario() {

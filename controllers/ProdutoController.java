@@ -29,4 +29,9 @@ public class ProdutoController {
     public static void removerProdutos(int posicao) {
         produtos.remove(posicao);
     }
+
+    public static void diminiuQuantidadeNoEstoqueAposVenda(Produto produto, int quantidade) {
+        int index = produtos.indexOf(produto);
+        produtos.get(index).diminuiQuantidade(quantidade);
+    }
 }
