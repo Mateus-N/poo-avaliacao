@@ -1,6 +1,5 @@
 package telas;
 
-import java.util.List;
 import java.util.Scanner;
 
 import Models.Produto;
@@ -9,19 +8,18 @@ import utils.Utilitarios;
 
 public class ProdutoService {
     private static Scanner in = new Scanner(System.in);
-    private static List<Produto> produtos = ProdutoController.buscarTodosOsProdutos();
 
     public static void exibirListaDeProdutos() {
         System.out.println("---------------------------------------------");
         System.out.println(String.format("| %-3s %-20s %-10s %-5s |", 
             "Cod", "Nome", "Preço", "Quant"));
-        for (int i = 0; i < produtos.size(); i++) {
-            if (produtos.get(i).getQuantidade() > 0) {
+        for (int i = 0; i < ProdutoController.quantidadeDeProdutos(); i++) {
+            if (ProdutoController.buscaProdutoPorPosicao(i).getQuantidade() > 0) {
                 String linhaCardapio = String.format("| %-3d %-20s R$%-8.2f %-5d |", 
                     i,
-                    produtos.get(i).getNome(),
-                    produtos.get(i).getPrecoUnitario(),
-                    produtos.get(i).getQuantidade()
+                    ProdutoController.buscaProdutoPorPosicao(i).getNome(),
+                    ProdutoController.buscaProdutoPorPosicao(i).getPrecoUnitario(),
+                    ProdutoController.buscaProdutoPorPosicao(i).getQuantidade()
                 );
                 System.out.println(linhaCardapio);
             }
@@ -46,18 +44,44 @@ public class ProdutoService {
         exibirListaDeProdutos();
     }
 
-    public static void adicionaQuantidadeAProduto() {
+    private static int buscaPosicaoDoProduto(String pergunta) {
         exibirListaDeProdutos();
         int posicaoProduto = Utilitarios.recebeOpcaoNumerica(
-            "Qual produto deseja adiciona a quantidade?\n(Digite o numero do produto na tabela)",
-            produtos.size());
+            pergunta,
+            ProdutoController.quantidadeDeProdutos());
+        return posicaoProduto;
+    }
+
+    public static void adicionaQuantidadeAProduto() {
+        int posicaoDoProduto = buscaPosicaoDoProduto(
+            "Qual produto deseja adiciona a quantidade?\n(Digite o numero do produto na tabela)");
         int quantidade = Utilitarios.recebeOpcaoNumerica(
             "Qual quantiade deseja adicionar?", 
             9999
         );
 
-        ProdutoController.adicionaQuantidadeAProdutos(posicaoProduto, quantidade);
-        System.out.println("Quantidade adicionada ao produto " + produtos.get(posicaoProduto).getNome());
+        ProdutoController.adicionaQuantidadeAProdutos(posicaoDoProduto, quantidade);
+        System.out.println("Quantidade adicionada ao produto " + ProdutoController.buscaProdutoPorPosicao(posicaoDoProduto).getNome());
         exibirListaDeProdutos();
+    }
+
+    public static void removerProdutoDoEstoque() {
+        int posicaoDoProduto = buscaPosicaoDoProduto(
+            "Qual produto deseja excluir\n(Digite o numero do produto na tabela)"
+        );
+        Produto produto = ProdutoController.buscaProdutoPorPosicao(posicaoDoProduto);
+        if (produto.getQuantidade() > 0) {
+            System.out.println("Esse produto possui quantidade no estoque e não pode ser removido da lista");
+        } else {
+            int opcao = Utilitarios.recebeOpcaoNumerica(
+                "Tem certeza que deseja excluir o produto?\n0- Sim\n1- Não", 2
+            );
+            if (opcao == 0) {
+                ProdutoController.removerProduto(produto);
+                System.out.println("Produto removido do sistema com sucesso");
+            } else if (opcao == 1) {
+                System.out.println("O produto não foi excluido");
+            }
+        }
     }
 }

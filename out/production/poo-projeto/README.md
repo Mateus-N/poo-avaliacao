@@ -1,1 +1,0 @@
-Projeto desenvolvido para a avaliação do segundo estágio da matéria de POO.

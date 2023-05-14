@@ -5,6 +5,7 @@ import java.util.Date;
 import Models.Cliente;
 import Models.ItemdoPedido;
 import Models.Pedido;
+import controllers.PedidoController;
 import controllers.ProdutoController;
 
 public class PedidoBuilder {
@@ -25,5 +26,6 @@ public class PedidoBuilder {
     public void finalizaPedido() {
         pedido.setData(new Date());
         pedido.getCliente().addPedidoAoHistorico(pedido);
+        PedidoController.adicionaPedido(pedido);
     }
 }

@@ -7,18 +7,23 @@ import Models.Cliente;
 import Models.ItemdoPedido;
 import Models.Pedido;
 import controllers.ClienteController;
+import controllers.PedidoController;
 import utils.Utilitarios;
 
 public class ClienteService {
     private static Scanner in = new Scanner(System.in);
 
-    public static Cliente buscaCliente() {
-        System.out.print("\nDigite o nome do cliente: ");
-        String pesquisaNome = in.nextLine();
-        return ClienteController.buscaClientePorNome(pesquisaNome);
+    public static void verificaSeClienteJaTemCadastro(String nome) {
+        Cliente cliente = ClienteController.buscaClientePorNome(nome);
+        if (cliente == null) {
+            System.out.println("Como um cliente novo, realize o cadastro por favor:");
+            cliente = adicionaCliente(nome);
+            System.out.println("Cadastro efetuado com sucesso!");
+        }
+        perfilCliente(cliente);
     }
 
-    public static Cliente adicionaCliente(String nome) {
+    private static Cliente adicionaCliente(String nome) {
         System.out.print("Endereço: ");
         String endereco = in.nextLine();
 
@@ -30,7 +35,7 @@ public class ClienteService {
         return clienteNovo;
     }
 
-    public static void editaCliente(Cliente cliente) {
+    private static void editaCliente(Cliente cliente) {
         String pergunta = "Qual dado deseja alterar?\n0- Nome\n1- Endereco\n2- Telefone";
         int opcao = Utilitarios.recebeOpcaoNumerica(pergunta, 3);
         if (opcao == 0) {
@@ -48,30 +53,7 @@ public class ClienteService {
         }
     }
 
-    public static void removeCliente() {
-        Cliente cliente = buscaCliente();
-        
-        String pergunta = "\nTem certeza que deseja excluir o cliente " + cliente.getNome() + "?\n0- Sim\n1- Não";
-        int opcao = Utilitarios.recebeOpcaoNumerica(pergunta, 2);
-        if (opcao == 0) {
-            System.out.println("Excluindo cliente " + cliente.getNome() + "!");
-            ClienteController.removeCliente(cliente);
-        } else if (opcao == 1) {
-            System.out.println("Cliente não excluido!");
-        }
-    }
-
-    public static void verificaSeClienteJaTemCadastro(String nome) {
-        Cliente cliente = ClienteController.buscaClientePorNome(nome);
-        if (cliente == null) {
-            System.out.println("Como um cliente novo, realize o cadastro por favor:");
-            cliente = adicionaCliente(nome);
-            System.out.println("Cadastro efetuado com sucesso!");
-        }
-        perfilCliente(cliente);
-    }
-
-    public static void perfilCliente(Cliente cliente) {
+    private static void perfilCliente(Cliente cliente) {
         while (true) {
             System.out.println("\nSeja bem vindo " + cliente.getNome());
             String pergunta = "O que deseja?\n0- Realizar pedido\n1- Exibir dados pessoais\n2- Exibir histórico de pedidos\n3- Sair";
@@ -89,13 +71,7 @@ public class ClienteService {
         }
     }
 
-    public static void exibeTodosOsClientes() {
-        ClienteController.buscaTodosClientes().forEach(cliente -> {
-            System.out.println("Nome: " + cliente.getNome());
-        });
-    }
-
-    public static void exibeDadosPessoais(Cliente cliente) {
+    private static void exibeDadosPessoais(Cliente cliente) {
         System.out.println("\nNome: " + cliente.getNome());
         System.out.println("Endereço: " + cliente.getEndereco());
         System.out.println("Telefone: " + cliente.getTelefone());
@@ -106,7 +82,7 @@ public class ClienteService {
         }
     }
 
-    public static void exibirHistoricoDePedidos(Cliente cliente) {
+    private static void exibirHistoricoDePedidos(Cliente cliente) {
         List<Pedido> pedidos = cliente.getHistoricoDePedidos();
         System.out.println("\nPedidos do cliente: " + cliente.getNome());
         for (int i = 0; i < pedidos.size(); i++) {
@@ -128,11 +104,12 @@ public class ClienteService {
             "Qual pedido deseja cancela?\n(Digite o Nº do pedido)",
             pedidos.size()
         );
-        pedidos.remove(opcao);
+        Pedido pedido = pedidos.remove(opcao);
+        PedidoController.cancelaPedido(pedido);
         System.out.println("Pedido de número " + opcao + " cancelado");
     }
 
-    public static void exibirItensDoPedido(List<ItemdoPedido> itens) {
+    private static void exibirItensDoPedido(List<ItemdoPedido> itens) {
         System.out.println(String.format("| %-20s %-7s %-11s |",
             "Produto", "Quant", "Preço Total"
         ));

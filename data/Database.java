@@ -5,18 +5,20 @@ import java.util.List;
 
 import Models.Cliente;
 import Models.Funcionario;
+import Models.Pedido;
 import Models.Produto;
 
 public class Database {
     private static List<Funcionario> funcionarios = new ArrayList<Funcionario>();
     private static List<Produto> produtos = new ArrayList<Produto>();
     private static List<Cliente> clientes = new ArrayList<Cliente>();
+    private static List<Pedido> pedidos = new ArrayList<Pedido>();
 
     static {
         Funcionario[] funcionariosBase = {
-            new Funcionario("Remy", "Cozinheiro", 1200, "8:00 > 12:00 | 14:00 > 16:00"),
-            new Funcionario("Linguini", "Entregador", 900, "8:00 > 12:00 | 14:00 > 16:00"),
-            new Funcionario("Colette", "Cozinheira", 1200, "8:00 > 12:00 | 14:00 > 16:00")
+            new Funcionario("Remy", "Chefe", 1200, "8:00 > 12:00 | 14:00 > 16:00"),
+            new Funcionario("Linguini", "Cozinheiro", 900, "8:00 > 12:00 | 14:00 > 16:00"),
+            new Funcionario("Colette", "Cozinheiro", 1200, "8:00 > 12:00 | 14:00 > 16:00")
         };
 
         for (Funcionario funcionario : funcionariosBase) {
@@ -53,5 +55,8 @@ public class Database {
     }
     public static List<Cliente> getClientes() {
         return clientes;
+    }
+    public static List<Pedido> getPedidos() {
+        return pedidos;
     }
 }

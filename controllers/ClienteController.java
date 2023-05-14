@@ -3,6 +3,7 @@ package controllers;
 import java.util.List;
 
 import Models.Cliente;
+import Models.Pedido;
 import data.Database;
 
 public class ClienteController {
@@ -16,8 +17,12 @@ public class ClienteController {
         clientes.remove(cliente);
     }
 
-    public static List<Cliente> buscaTodosClientes() {
-        return clientes;
+    public static Cliente buscaClientePorPosicao(int posicao) {
+        return clientes.get(posicao);
+    }
+
+    public static int quantidadeDeClientes() {
+        return clientes.size();
     }
 
     public static Cliente buscaClientePorNome(String nome) {
@@ -25,5 +30,14 @@ public class ClienteController {
             .filter(c -> c.getNome().equals(nome))
             .findFirst()
             .orElse(null);
+    }
+
+    public static double totalDeComprasPorCliente(int posicao) {
+        Cliente cliente = buscaClientePorPosicao(posicao);
+        double totalDeCompras = 0;
+        for (Pedido pedido : cliente.getHistoricoDePedidos()) {
+            totalDeCompras += pedido.getValorTotal();
+        }
+        return totalDeCompras;
     }
 }

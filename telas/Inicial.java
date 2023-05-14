@@ -30,5 +30,8 @@ public class Inicial {
     }
 
     private static void menuFuncionario() {
+        System.out.print("Digite seu nome: ");
+        String nome = in.nextLine();
+        FuncionarioService.login(nome);
     }
 }

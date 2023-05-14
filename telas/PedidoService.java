@@ -38,7 +38,7 @@ public class PedidoService {
 
     private static Produto escolherProduto() {
         ProdutoService.exibirListaDeProdutos();
-        int quantidadeDeProdutos = ProdutoController.buscarTodosOsProdutos().size();
+        int quantidadeDeProdutos = ProdutoController.quantidadeDeProdutos();
         int posicaoDoProdutoEscolhido = Utilitarios.recebeOpcaoNumerica(
             "Escolha o produto para adicionar ao pedido\n(Digite o cod para escolher o produto)",
             quantidadeDeProdutos
