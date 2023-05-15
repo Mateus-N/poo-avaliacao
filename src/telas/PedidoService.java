@@ -17,8 +17,19 @@ public class PedidoService {
             adicionarItemAoPedido(builder);
             opcao = Utilitarios.recebeOpcaoNumerica("Adicionar novo item?\n0- Sim\n1- Não", 2);
         } while (opcao != 1);
+        verificaSeDesejaEntrega(builder);
         builder.finalizaPedido();
         System.out.println("Pedido finalizado e adiciona a sua lista!");
+    }
+
+    private static void verificaSeDesejaEntrega(PedidoBuilder builder) {
+        int opcao = Utilitarios.recebeOpcaoNumerica(
+            "Deseja vir ao estabelecimento ou receber em sua residência?\n(A taxa de entrega é de 6 reais)\n0- Residência\n1- Retirada",
+            2);
+        if (opcao == 0) {
+            System.out.println("Ok, o tempo estimado de entrega é de 30 minutos, a taxa será adicionada ao valor total do pedido");
+            builder.adicionarTaxaDeEntrega();
+        }
     }
 
     private static void adicionarItemAoPedido(PedidoBuilder builder) {

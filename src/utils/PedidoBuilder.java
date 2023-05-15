@@ -23,6 +23,10 @@ public class PedidoBuilder {
         );
     }
 
+    public void adicionarTaxaDeEntrega() {
+        pedido.adicionarTaxaDeEntrega();
+    }
+
     public void finalizaPedido() {
         pedido.setData(new Date());
         pedido.getCliente().addPedidoAoHistorico(pedido);

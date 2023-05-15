@@ -29,6 +29,9 @@ public class Pedido {
         itens.add(item);
         valorTotal += item.getValorTotal();
     }
+    public void adicionarTaxaDeEntrega() {
+        valorTotal += 6;
+    }
 
     public Pedido(Cliente cliente) {
         this.cliente = cliente;
