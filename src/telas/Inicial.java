@@ -26,12 +26,12 @@ public class Inicial {
     private static void menuCliente() {
         System.out.print("Digite seu nome: ");
         String nome = in.nextLine();
-        ClienteService.verificaSeClienteJaTemCadastro(nome);
+        TelaCliente.verificaSeClienteJaTemCadastro(nome);
     }
 
     private static void menuFuncionario() {
         System.out.print("Digite seu nome: ");
         String nome = in.nextLine();
-        FuncionarioService.login(nome);
+        TelaFuncionario.login(nome);
     }
 }

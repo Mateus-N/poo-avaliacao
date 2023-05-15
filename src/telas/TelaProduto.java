@@ -4,9 +4,10 @@ import java.util.Scanner;
 
 import Models.Produto;
 import controllers.ProdutoController;
+import controllers.IngredientesController;
 import utils.Utilitarios;
 
-public class ProdutoService {
+public class TelaProduto {
     private static Scanner in = new Scanner(System.in);
 
     public static void exibirListaDeProdutos() {
@@ -22,6 +23,24 @@ public class ProdutoService {
                     ProdutoController.buscaProdutoPorPosicao(i).getQuantidade()
                 );
                 System.out.println(linhaCardapio);
+            }
+        }
+        System.out.println("---------------------------------------------");
+    }
+
+    public static void exibirListaDeIngredientes() {
+        System.out.println("---------------------------------------------");
+        System.out.println(String.format("| %-3s %-20s %-10s %-5s |", 
+            "Cod", "Nome", "Preço", "Quant"));
+        for (int i = 0; i < IngredientesController.quantidadeTotalDeIngredientes(); i++) {
+            if (IngredientesController.buscaIngredientePorPosicao(i).getQuantidade() > 0) {
+                String linhaIngrediente = String.format("| %-3d %-20s R$%-8.2f %-5d |", 
+                    i,
+                    IngredientesController.buscaIngredientePorPosicao(i).getNome(),
+                    IngredientesController.buscaIngredientePorPosicao(i).getPrecoUnitario(),
+                    IngredientesController.buscaIngredientePorPosicao(i).getQuantidade()
+                );
+                System.out.println(linhaIngrediente);
             }
         }
         System.out.println("---------------------------------------------");

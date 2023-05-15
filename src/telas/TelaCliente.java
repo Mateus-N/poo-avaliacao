@@ -10,7 +10,7 @@ import controllers.ClienteController;
 import controllers.PedidoController;
 import utils.Utilitarios;
 
-public class ClienteService {
+public class TelaCliente {
     private static Scanner in = new Scanner(System.in);
 
     public static void verificaSeClienteJaTemCadastro(String nome) {
@@ -59,7 +59,7 @@ public class ClienteService {
             String pergunta = "O que deseja?\n0- Realizar pedido\n1- Exibir dados pessoais\n2- Exibir histórico de pedidos\n3- Sair";
             int opcao = Utilitarios.recebeOpcaoNumerica(pergunta, 4);
             if (opcao == 0) {
-                PedidoService.fazerPedido(cliente);
+                mostraMenuDeProdutos(cliente);
             } else if (opcao == 1) {
                 exibeDadosPessoais(cliente);
             } else if (opcao == 2) {
@@ -68,6 +68,16 @@ public class ClienteService {
                 System.out.println("VOLTE SEMPRE!!!");
                 break;
             }
+        }
+    }
+
+    private static void mostraMenuDeProdutos(Cliente cliente) {
+        int opcao = Utilitarios.recebeOpcaoNumerica(
+            "0- Ver cardápio\n1- Montar hambueguer personalizado", 2);
+        if (opcao == 0) {
+            TelaPedido.fazerPedido(cliente, "cardapio");
+        } else if (opcao == 1) {
+            TelaPedido.fazerPedido(cliente, "personalizado");
         }
     }
 
@@ -89,6 +99,7 @@ public class ClienteService {
             System.out.println("---------------------------------------------");
             System.out.println("Pedido Nº" + i);
             exibirItensDoPedido(pedidos.get(i).getItens());
+            System.out.println("Total do pedido: " + pedidos.get(i).getValorTotal());
             System.out.println("---------------------------------------------");
         }
         int opcao = Utilitarios.recebeOpcaoNumerica(

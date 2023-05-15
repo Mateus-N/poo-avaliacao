@@ -5,6 +5,8 @@ import java.util.Date;
 import Models.Cliente;
 import Models.ItemdoPedido;
 import Models.Pedido;
+import Models.Produto;
+import controllers.IngredientesController;
 import controllers.PedidoController;
 import controllers.ProdutoController;
 
@@ -15,21 +17,33 @@ public class PedidoBuilder {
         pedido = new Pedido(cliente);
     }
 
-    public void adicionaItemAoPedido(ItemdoPedido item) {
+    public void adicionaItemAoPedido(ItemdoPedido item, String cardapioOuPersonalizado) {
         pedido.adicionaItem(item);
-        ProdutoController.diminiuQuantidadeNoEstoqueAposVenda(
+        if (cardapioOuPersonalizado == "cardapio") {
+            ProdutoController.diminiuQuantidadeNoEstoqueAposVenda(
             item.getProduto(),
             item.getQuantidade()
         );
+        } else if (cardapioOuPersonalizado == "personalizado") {
+            IngredientesController.removeQuantidadeDeIngrediente(
+                item.getProduto(),
+                item.getQuantidade()    
+            );
+        }
+        
     }
 
     public void adicionarTaxaDeEntrega() {
-        pedido.adicionarTaxaDeEntrega();
+        pedido.adicionaItem(
+            new ItemdoPedido(
+                new Produto("Entrega", 1, 6), 1)
+        );
     }
 
-    public void finalizaPedido() {
+    public double finalizaPedido() {
         pedido.setData(new Date());
         pedido.getCliente().addPedidoAoHistorico(pedido);
         PedidoController.adicionaPedido(pedido);
+        return pedido.getValorTotal();
     }
 }

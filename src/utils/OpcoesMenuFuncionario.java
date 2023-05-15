@@ -3,28 +3,28 @@ package utils;
 import Models.Funcionario;
 import Models.Pedido;
 import controllers.PedidoController;
-import telas.ProdutoService;
+import telas.TelaProduto;
 import utils.interfaces.IOpcoesMenuFuncionario;
 
 public class OpcoesMenuFuncionario implements IOpcoesMenuFuncionario {
     @Override
     public void exibirEstoque() {
-        ProdutoService.exibirListaDeProdutos();
+        TelaProduto.exibirListaDeProdutos();
     }
     
     @Override
     public void criarProduto() {
-       ProdutoService.adicionarProduto();
+       TelaProduto.adicionarProduto();
     }
 
     @Override
     public void adicionarQuantidadeDeProduto() {
-        ProdutoService.adicionaQuantidadeAProduto();
+        TelaProduto.adicionaQuantidadeAProduto();
     }
 
     @Override
     public void removerProduto() {
-        ProdutoService.removerProdutoDoEstoque();
+        TelaProduto.removerProdutoDoEstoque();
     }
 
     @Override

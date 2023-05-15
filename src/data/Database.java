@@ -13,6 +13,7 @@ public class Database {
     private static List<Produto> produtos = new ArrayList<Produto>();
     private static List<Cliente> clientes = new ArrayList<Cliente>();
     private static List<Pedido> pedidos = new ArrayList<Pedido>();
+    private static List<Produto> ingredientes = new ArrayList<Produto>();
 
     static {
         Funcionario[] funcionariosBase = {
@@ -45,6 +46,20 @@ public class Database {
         for (Cliente cliente : clientesBase) {
             clientes.add(cliente);
         }
+
+        Produto[] ingredientesBase = {
+            new Produto("Pão", 30, 1),
+            new Produto("Carne", 30, 5),
+            new Produto("Alface", 30, 0.5),
+            new Produto("Tomate", 30, 0.5),
+            new Produto("Queijo", 30, 2),
+            new Produto("Presunto", 30, 3),
+            new Produto("Frango", 30, 4),
+        };
+
+        for (Produto ingrediente : ingredientesBase) {
+            ingredientes.add(ingrediente);
+        }
     }
 
     public static List<Funcionario> getFuncionarios() {
@@ -58,5 +73,8 @@ public class Database {
     }
     public static List<Pedido> getPedidos() {
         return pedidos;
+    }
+    public static List<Produto> getIngredientes() {
+        return ingredientes;
     }
 }

@@ -6,7 +6,7 @@ import utils.OpcoesMenuFuncionario;
 import utils.Utilitarios;
 import utils.interfaces.IOpcoesMenuFuncionario;
 
-public class FuncionarioService {
+public class TelaFuncionario {
     private static IOpcoesMenuFuncionario opcoesMenu = new OpcoesMenuFuncionario();
 
     public static void login(String nome) {
