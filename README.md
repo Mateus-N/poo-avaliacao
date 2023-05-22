@@ -2,7 +2,9 @@
 
 <h1> Tema hamburgueria artesanal🍔. </h1>
 
-![Funcionamento do projeto via console] ()
+
+![Funcionamento do projeto pelo o console](https://github.com/Mateus-N/poo-avaliacao/blob/master/projeto_pablo-_1_.gif)
+
 # :hammer: Funcionalidades do projeto:
 
 - Produtos: hambúrgueres, batatas fritas, milkshakes, refrigerantes, etc.
